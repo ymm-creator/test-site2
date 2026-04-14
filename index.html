@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Центр занятости курьеров — Стань курьером и зарабатывай до 9 400₽ в день!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           CSS VARIABLES & RESET
+           ============================================ */
+        :root {
+            --primary-color: #ff6b35;
+            --primary-hover: #e85a2a;
+            --secondary-color: #1a1a2e;
+            --accent-color: #00d9a5;
+            --background-light: #ffffff;
+            --background-gray: #f8f9fa;
+            --background-dark: #1a1a2e;
+            --text-primary: #1a1a2e;
+            --text-secondary: #6c757d;
+            --text-light: #ffffff;
+            --border-color: #e9ecef;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.16);
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-primary);
+            background-color: var(--background-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), #ff8c5a);
+            color: var(--text-light);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-hover), #ff7b4a);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: var(--text-primary);
+        }
+
+        .btn-large {
+            padding: 20px 40px;
+            font-size: 18px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-color), #ff8c5a);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .header-btn {
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #2d2d44 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.2);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 107, 53, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--text-light);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 4px;
+        }
+
+        /* ============================================
+           ADVANTAGES SECTION
+           ============================================ */
+        .advantages {
+            background: var(--background-gray);
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        .advantage-card {
+            background: var(--background-light);
+            border-radius: var(--border-radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .advantage-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), #ff8c5a);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .advantage-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .advantage-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .advantages-cta {
+            background: linear-gradient(135deg, var(--secondary-color), #2d2d44);
+            border-radius: var(--border-radius-lg);
+            padding: 50px;
+            text-align: center;
+        }
+
+        .advantages-cta h2 {
+            font-size: 32px;
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        /* ============================================
+           HOW TO BECOME SECTION
+           ============================================ */
+        .steps {
+            background: var(--background-light);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 32px 24px;
+            position: relative;
+        }
+
+        .step-card:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 60px;
+            right: -12px;
+            width: 24px;
+            height: 2px;
+            background: var(--border-color);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), #ff8c5a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .step-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           CALCULATOR SECTION
+           ============================================ */
+        .calculator {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #2d2d44 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -30%;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,217,165,0.1) 0%, transparent 70%);
+        }
+
+        .calculator .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .calculator .section-title,
+        .calculator .section-subtitle {
+            color: var(--text-light);
+        }
+
+        .calculator-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-lg);
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .slider-group {
+            margin-bottom: 32px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .slider-label span {
+            color: var(--text-light);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .slider-value {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .slider-input {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .slider-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .slider-input::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        .slider-input::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .calculator-result {
+            background: rgba(0, 217, 165, 0.15);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            text-align: center;
+            margin-top: 32px;
+            border: 1px solid rgba(0, 217, 165, 0.3);
+        }
+
+        .result-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+        }
+
+        .result-amount {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--accent-color);
+        }
+
+        .calculator .btn {
+            width: 100%;
+            margin-top: 24px;
+        }
+
+        /* ============================================
+           FAQ SECTION
+           ============================================ */
+        .faq {
+            background: var(--background-gray);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--background-light);
+            border-radius: var(--border-radius);
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 24px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--primary-color);
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+
+        .faq-icon::before,
+        .faq-icon::after {
+            content: '';
+            position: absolute;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .faq-icon::before {
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            transform: translateY(-50%);
+        }
+
+        .faq-icon::after {
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            transform: translateX(-50%);
+        }
+
+        .faq-item.active .faq-icon::after {
+            transform: translateX(-50%) rotate(90deg);
+            opacity: 0;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 24px 24px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* ============================================
+           FINAL CTA SECTION
+           ============================================ */
+        .final-cta {
+            background: linear-gradient(135deg, var(--primary-color), #ff8c5a);
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .final-cta h2 {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 32px;
+        }
+
+        .final-cta .btn {
+            background: var(--text-light);
+            color: var(--primary-color);
+        }
+
+        .final-cta .btn:hover {
+            background: var(--secondary-color);
+            color: var(--text-light);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--secondary-color);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer p {
+            margin-bottom: 8px;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 1024px) {
+            .advantages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step-card:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .header-btn {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .hero-stats {
+                gap: 20px;
+            }
+
+            .stat-number {
+                font-size: 28px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-wrapper {
+                padding: 24px;
+            }
+
+            .final-cta h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .btn-large {
+                padding: 16px 24px;
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: var(--shadow-md);
+            padding: 20px;
+            z-index: 999;
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 12px 0;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-nav a:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">Центр занятости курьеров</span>
+                    <span class="logo-subtitle">Работа рядом с домом</span>
+                </div>
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#advantages">Преимущества</a></li>
+                    <li><a href="#steps">Как стать курьером</a></li>
+                    <li><a href="#calculator">Возможный доход</a></li>
+                    <li><a href="#faq">Ответы на вопросы</a></li>
+                </ul>
+            </nav>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=c1ba4d1b866140d89efb5a99d2c9dc66&utm_content=blank" class="btn btn-primary header-btn">Стать Курьером</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileNav()">☰</button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#advantages" onclick="toggleMobileNav()">Преимущества</a>
+        <a href="#steps" onclick="toggleMobileNav()">Как стать курьером</a>
+        <a href="#calculator" onclick="toggleMobileNav()">Возможный доход</a>
+        <a href="#faq" onclick="toggleMobileNav()">Ответы на вопросы</a>
+        <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=c1ba4d1b866140d89efb5a99d2c9dc66&utm_content=blank" onclick="toggleMobileNav()">Стать Курьером</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">🔥 Ежедневные выплаты</span>
+                <h1>Стань курьером и зарабатывай <span>до 9 400 рублей</span> в день!</h1>
+                <p>Мы предлагаем быстрое трудоустройство и ежедневные выплаты</p>
+                <div class="hero-buttons">
+                    <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=c1ba4d1b866140d89efb5a99d2c9dc66&utm_content=blank" class="btn btn-primary btn-large">Стать курьером</a>
+                    <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=c1ba4d1b866140d89efb5a99d2c9dc66&utm_content=blank" class="btn btn-secondary btn-large">Кликай сюда</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">9 400₽</div>
+                        <div class="stat-label">Макс. доход в день</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Свободный график</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Ежедневные выплаты</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section class="advantages" id="advantages">
+        <div class="container">
+            <h2 class="section-title">Присоединяйтесь к нам в качестве курьера</h2>
+            <p class="section-subtitle">Получайте эксклюзивные бонусы и преимущества!</p>
+            
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">💰</div>
+                    <h3>Ежедневные выплаты</h3>
+                    <p>Получайте свои заработанные деньги каждый день без задержек! Мы гарантируем своевременные выплаты без лишних ожиданий.</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">📈</div>
+                    <h3>Доход до 9400₽ в день</h3>
+                    <p>Полностью зависит от вашей мотивации и желания работать. Чем больше работаете — тем больше зарабатываете!</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">🕐</div>
+                    <h3>Свободный график</h3>
+                    <p>Гибкий график и работа в удобное время — ваш выбор, ваш контроль. Работайте когда вам удобно!</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">🏠</div>
+                    <h3>Работа по вашему району</h3>
+                    <p>Оптимизируйте свои поездки, выполняя заказы поблизости от вашего дома и экономьте время и деньги.</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">📦</div>
+                    <h3>Легкие заказы</h3>
+                    <p>Это помогает сократить физическую нагрузку и повысить производительность. Комфортная работа для всех!</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">🚴</div>
+                    <h3>Пешие/вело и авто курьеры</h3>
+                    <p>Выберите оптимальный метод доставки, который подходит именно вам. Любой транспорт приветствуется!</p>
+                </div>
+            </div>
+
+            <div class="advantages-cta">
+                <h2>Стать курьером</h2>
+                <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=c1ba4d1b866140d89efb5a99d2c9dc66&utm_content=blank" class="btn btn-primary btn-large">Кликай сюда</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Become Section -->
+    <section class="steps" id="steps">
+        <div class="container">
+            <h2 class="section-title">Как стать курьером?</h2>
+            <p class="section-subtitle">Всего 4 простых шага отделяют вас от начала работы</p>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>ОТПРАВЬТЕ ЗАЯВКУ НА РЕГИСТРАЦИЮ</h3>
+                    <p>Кликните на кнопку «Стать Курьером» и заполните необходимые поля.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>ПРОЙДИТЕ ОБУЧЕНИЕ ОНЛАЙН</h3>
+                    <p>Обучение займет 5 минут. Вы научитесь работать с программой.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>ПРОЙДИТЕ ОНЛАЙН-АКТИВАЦИЮ</h3>
+                    <p>Мы проверим, как хорошо вы усвоили информацию из обучения.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>ПОЛУЧИТЕ ДОСТУП В ПРИЛОЖЕНИЕ</h3>
+                    <p>Готово! Выходите на линию, получайте заказы на доставку и зарабатывайте!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator" id="calculator">
+        <div class="container">
+            <h2 class="section-title">Рассчитайте свой доход</h2>
+            <p class="section-subtitle">Узнайте, сколько вы можете зарабатывать</p>
+            
+            <div class="calculator-wrapper">
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Сколько часов в сутки вы готовы работать?</span>
+                        <span class="slider-value" id="hoursValue">8 ч</span>
+                    </div>
+                    <input type="range" class="slider-input" id="hoursSlider" min="6" max="14" step="1" value="8">
+                </div>
+                
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Сколько дней в месяц вы готовы работать?</span>
+                        <span class="slider-value" id="daysValue">20 дн</span>
+                    </div>
+                    <input type="range" class="slider-input" id="daysSlider" min="1" max="31" step="1" value="20">
+                </div>
+
+                <div class="calculator-result">
+                    <div class="result-label">Ваш потенциальный доход в месяц:</div>
+                    <div class="result-amount" id="resultAmount">0 ₽</div>
+                </div>
+
+                <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=c1ba4d1b866140d89efb5a99d2c9dc66&utm_content=blank" class="btn btn-primary btn-large">Кликай сюда</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Ответы на вопросы</h2>
+            <p class="section-subtitle">Наиболее частые вопросы от наших курьеров</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        У меня есть основная работа / учеба, можно на подработку?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Да, конечно! У нас свободный график, поэтому вы можете совмещать работу курьером с учёбой или основной работой. Выбирайте удобное время и работайте когда вам комфортно.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Каким способом можно доставлять заказы?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Вы можете доставлять заказы пешком, на велосипеде, самокате или автомобиле. Выбирайте тот способ, который вам удобнее и выгоднее.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Можно получать выплаты ежедневно?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Да! Мы предлагаем ежедневные выплаты. Все заработанные деньги вы получаете на следующий день после выполнения заказов.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Нужны ли вложения для начала работы?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Нет, вложения не требуются. Регистрация, обучение и доступ к приложению — всё бесплатно.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Сколько заказов можно выполнить?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Количество заказов зависит от вашего графика и желания работать. В среднем курьеры выполняют от 10 до 30 заказов в день.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Что нужно доставлять?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            В основном это продукты питания из ресторанов и магазинов, а также небольшие посылки и товары.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Нужно ли одевать униформу?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Униформа не обязательна, но желательна для идентификации. Вы можете приобрести её отдельно или использовать удобную одежду.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Какой смартфон подходит для работы?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Подходят смартфоны на Android 7.0+ и iOS 12+. Главное — стабильный интернет и работающий GPS.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Каким способом происходит оформление?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Оформление происходит полностью онлайн через наше приложение. Вам нужно будет заполнить анкету и пройти верификацию.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Можно ли выбрать район для работы?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Да, вы можете выбрать удобный район для работы. Система будет предлагать заказы преимущественно в вашей зоне.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Мне меньше 18, принимаете?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Да, мы принимаем курьеров с 16 лет. Для несовершеннолетних требуется согласие родителей или опекунов.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Могу ли стать курьером, если я не гражданин РФ?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Да, мы принимаем иностранных граждан при наличии разрешительных документов на работу в РФ.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta" id="register">
+        <div class="container">
+            <h2>Стань курьером прямо сейчас!</h2>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=c1ba4d1b866140d89efb5a99d2c9dc66&utm_content=blank" class="btn btn-primary btn-large">Кликай сюда</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Центр занятости курьеров. Все права защищены.</p>
+            <p>Работа курьером — ваш путь к финансовому успеху!</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        function toggleMobileNav() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Calculator Logic
+        const hoursSlider = document.getElementById('hoursSlider');
+        const daysSlider = document.getElementById('daysSlider');
+        const hoursValue = document.getElementById('hoursValue');
+        const daysValue = document.getElementById('daysValue');
+        const resultAmount = document.getElementById('resultAmount');
+
+        function calculateIncome() {
+            const hours = parseInt(hoursSlider.value);
+            const days = parseInt(daysSlider.value);
+            
+            // Rate: approximately 400 rubles per hour average
+            const hourlyRate = 400;
+            const monthlyIncome = hours * days * hourlyRate;
+            
+            hoursValue.textContent = `${hours} ч`;
+            daysValue.textContent = `${days} дн`;
+            resultAmount.textContent = `${monthlyIncome.toLocaleString('ru-RU')} ₽`;
+        }
+
+        hoursSlider.addEventListener('input', calculateIncome);
+        daysSlider.addEventListener('input', calculateIncome);
+
+        // Initialize calculator
+        calculateIncome();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 4px rgba(0,0,0,0.08)';
+            }
+        });
+    </script>
+</body>
+</html>
